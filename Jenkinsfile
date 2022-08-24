@@ -13,7 +13,7 @@ pipeline{
                     sh """
                     cd /home/ahsan/jenkins-prac 
                     python3 -m venv venv 
-                    . .venv/bin/activate
+                    . venv/bin/activate
                     pip3 install -r requirements.txt 
                     python3 -m pytest --cov=application
                     """
