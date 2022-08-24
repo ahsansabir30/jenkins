@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="mx-auto" style="width: 40%;">
+    <form method="POST" action="" class="">
+        <!-- CSRF TOKEN-->
+        {{form.hidden_tag()}}
+        <div class="mb-3">
+            {% if header %}
+            <h4>{{header}}</h4>
+            {% else %}
+            <h4>New Plan</h4>
+            {% endif %}  
+            <div class="form-group">
+                {{form.name.label(class="")}}
+
+                {% if form.name.errors %}
+                    {{form.name(class="form-control")}}
+                    <div class="alert alert-danger mt-1 mb-1 p-1" style= "font-size: 0.9rem;">
+                        {% for error in form.name.errors %}
+                            <span>{{error}}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{form.name(class="form-control")}}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{form.budget.label(class="")}}
+
+                {% if form.budget.errors %}
+                    {{form.budget(class="form-control")}}
+                    <div class="alert alert-danger mt-1 mb-1 p-1" style= "font-size: 0.9rem;">
+                        {% for error in form.budget.errors %}
+                            <span>{{error}}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{form.budget(class="form-control")}}
+                {% endif %}
+            </div>
+        </div>
+        <div class="">
+            <a class="btn btn-secondary" href="{{url_for('plan_view')}}">Back</a>
+            {{form.submit(class="btn btn-success")}}
+        </div>
+    </form>
+</div>
+{% endblock content %}

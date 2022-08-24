@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="mx-auto" style="width: 80%;">
+    <div class="d-flex justify-content-between">
+        <h4>Planner</h4>
+        <a href="{{url_for('create_plan')}}" class="btn btn-success">Create Plan</a>
+    </div>
+    {% for plan in plans %}
+    <div class="card my-3">
+        <div class="card-header d-flex justify-content-between">
+            <a href="{{url_for('plan_expense', plan_id=plan.id)}}" class="font-weight-bold link-info text-decoration-none">{{plan.name}}</a>
+            <p class="">{{plan.created.strftime('%d-%m-%Y')}}</p>
+        </div>
+        <div class="card-body d-flex justify-content-between">
+            <span class="card-text">Total Budget:  {{"£%.2f"|format(plan.budget)}}</span>
+            <div class= "float-right">
+            <a href="{{url_for('update_plan', plan_id=plan.id)}}" class="btn btn-sm btn-primary">Update</a>
+            <a href="{{url_for('delete_plan', plan_id=plan.id)}}" class="btn btn-sm btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %} 
+</div>
+{% endblock %}
+

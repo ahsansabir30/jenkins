@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="mx-auto" style="width: 40%;">
+    <form method="POST" action="" class="">
+        <!-- CSRF TOKEN-->
+        {{form.hidden_tag()}}
+
+        <div class="mb-3">
+            {% if header %}
+            <h4>{{header}}</h4>
+            {% else %}
+            <h4>New Expense</h4>
+            {% endif %}
+            <div class="form-group">
+                {{form.type.label(class="")}}
+
+                {% if form.type.errors %}
+                    {{form.type(class="form-control")}}
+                    <div class="alert alert-danger mt-1 mb-1 p-1" style= "font-size: 0.9rem;">
+                        {% for error in form.type.errors %}
+                            <span>{{error}}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{form.type(class="form-control")}}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{form.expense.label(class="")}}
+
+                {% if form.expense.errors %}
+                    {{form.expense(class="form-control")}}
+                    <div class="alert alert-danger mt-1 mb-1 p-1" style= "font-size: 0.9rem;">
+                        {% for error in form.expense.errors %}
+                            <span>{{error}}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{form.expense(class="form-control")}}
+                {% endif %}
+            </div>
+        </div>
+        <div class="">
+            <a class="btn btn-secondary" href="{{url_for('plan_expense', plan_id=plan_id)}}">Back</a>
+            {{form.submit(class="btn btn-success")}}
+        </div>
+    </form>
+</div>
+{% endblock content %}
