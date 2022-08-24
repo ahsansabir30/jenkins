@@ -1,9 +1,15 @@
 pipeline{
         agent any
         stages{
-            stage(''){
+            stage('setup'){
                 steps{
-                    
+                    sh "git fetch https://github.com/ahsansabir30/jenkins"
+                    sh "cd jenkins && cd devops-project"
+                }
+            }
+            stage('deployment'){
+                steps{
+                    sh "docker-compose up -d"
                 }
             }
         }
