@@ -4,7 +4,7 @@ pipeline{
             stage('setup'){
                 steps{
                     sh "git fetch https://github.com/ahsansabir30/jenkins"
-                    sh "cd jenkins && cd devops-project"
+                    sh "cd jenkins-prac && cd devops-project"
                 }
             }
             stage('deployment'){
